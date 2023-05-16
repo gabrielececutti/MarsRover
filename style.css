@@ -2,5 +2,14 @@
     background-color: green;
     text-emphasis-color: white;
 }
+.title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .titleImage {
+    margin-left: 10px; 
+    margin-right: 10px;
+  }
 
 

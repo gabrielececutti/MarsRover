@@ -28,8 +28,12 @@ const initializeArena = () => {
     var rowIndex = Math.floor (Math.random() * width)
     var columnIndex =  Math.floor (Math.random() * length);
     var targetCell = table.rows[rowIndex].cells[columnIndex];
-    var spaceCraft = document.createElement("div");
-    spaceCraft.textContent = "<||>";
+    var spaceCraft = document.createElement("img");
+    spaceCraft.src = "rocket.png";
+    spaceCraft.style.width = "20px";
+    spaceCraft.style.length = "20px";
+    spaceCraft.style.display = 'block';
+    spaceCraft.style.margin = 'auto';
     targetCell.appendChild(spaceCraft);
 
     // aggiunta ostacoli
