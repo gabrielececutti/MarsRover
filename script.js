@@ -52,13 +52,14 @@ const addSpacecraft = () => {
     spaceCraft.style.display = "block";
     spaceCraft.style.margin = "auto";
     targetCell.appendChild(spaceCraft);
-    postitionTakenArray = postitionTakenArray.concat([rowIndexSpacecarft, columnIndexSpacecraft]);
+    postitionTakenArray.push([rowIndexSpacecarft, columnIndexSpacecraft]);
 }
 
 const addObstacles = (numberObstacles) => {
     console.log(postitionTakenArray)
     console.log(numberObstacles);
     var created = 0;
+    var count = 0;
     while (created < numberObstacles) {
       let rowIndexObstacle = Math.floor(Math.random() * width);
       let columnIndexObstacle = Math.floor(Math.random() * length);
@@ -69,22 +70,27 @@ const addObstacles = (numberObstacles) => {
       
       if (!isPositionTaken) {
         addObstacle(rowIndexObstacle, columnIndexObstacle);
-        postitionTakenArray = postitionTakenArray.concat([rowIndexObstacle, columnIndexObstacle]);
+        postitionTakenArray.push([rowIndexObstacle, columnIndexObstacle]);
         created++;
       }
+      
+      if (count > width * length -1){
+        break;
+      }
+      count++;
     }
   }
 
 const addObstacle = (rowIndexObstacle, columnIndexObstacle) => {
-           var targetCell = table.rows[rowIndexObstacle].cells[columnIndexObstacle];
-           var obstacle = document.createElement("img");
-           obstacle.src = "asteroid.png";
-           obstacle.style.length = "30px";
-           obstacle.style.width = "30px";
-           obstacle.style.display = "block";
-           obstacle.style.margin = "auto";
-           targetCell.appendChild(obstacle);
-           postitionTakenArray = postitionTakenArray.concat([rowIndexObstacle,columnIndexObstacle]);
+  var targetCell = table.rows[rowIndexObstacle].cells[columnIndexObstacle];
+  var obstacle = document.createElement("img");
+  obstacle.src = "asteroid.png";
+  obstacle.style.length = "30px";
+  obstacle.style.width = "30px";
+  obstacle.style.display = "block";
+  obstacle.style.margin = "auto";
+  targetCell.appendChild(obstacle);
+  postitionTakenArray = postitionTakenArray.concat([rowIndexObstacle,columnIndexObstacle]);
 }
 
 window.onload = function() {
