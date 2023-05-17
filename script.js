@@ -1,13 +1,24 @@
+var table = null;
+var length = 0;
+var width = 0;
 
 const newGame = () => {
+    initializeArena();
+}
 
+const resetGame = () => {
+table.remove();
 }
 
 const initializeArena = () => {
-    // inizializzazione campo di gioco
-    var length = document.getElementById("userLength").value;
-    var width  = document.getElementById("userWidth").value;
-    let table = document.createElement("table");
+    buildArena();
+    addSpacecraft();
+}
+
+const buildArena = () => {
+    length = document.getElementById("userLength").value;
+    width  = document.getElementById("userWidth").value;
+    table = document.createElement("table");
     table.style.borderCollapse = "collapse";
 
     for (var i = 0; i < width; i++) {
@@ -22,24 +33,23 @@ const initializeArena = () => {
     table.appendChild(row);
     } 
     var arenaContainer = document.getElementById("arenaContainer");
-    arenaContainer.appendChild(table);
+    arenaContainer.appendChild(table);  
+}
 
-    // aggiunta navicella
-    var rowIndex = Math.floor (Math.random() * width)
+const addSpacecraft = () => {
+    var rowIndex = Math.floor (Math.random() * width);
     var columnIndex =  Math.floor (Math.random() * length);
     var targetCell = table.rows[rowIndex].cells[columnIndex];
     var spaceCraft = document.createElement("img");
     spaceCraft.src = "rocket.png";
-    spaceCraft.style.width = "20px";
     spaceCraft.style.length = "20px";
-    spaceCraft.style.display = 'block';
-    spaceCraft.style.margin = 'auto';
+    spaceCraft.style.width = "20px";
+    spaceCraft.style.display = "block";
+    spaceCraft.style.margin = "auto";
     targetCell.appendChild(spaceCraft);
-
-    // aggiunta ostacoli
 }
 
 
 window.onload = function() {
-    document.getElementById('startButton').addEventListener('click', initializeArena);
+    document.getElementById('startButton').addEventListener('click', newGame);
 };
